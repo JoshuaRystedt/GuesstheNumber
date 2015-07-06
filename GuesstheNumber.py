@@ -37,35 +37,43 @@ GoLower = ["Go LOWER.",
 
 # Generate random number between 1 and 100
 def thenumber():
+    print
     print "I'm thinking of a number between 1 and 100. Can you guess what it is?"
-    result = randint(1,100)
+    result = randint(1, 100)
     return result
 
 # User guess
 def userguess():
     result = raw_input("Guess the number: ")
     try:
-        val = int(result)
         result = int(result)
         return result
     except ValueError:
         print "That's not a number!"
-        exit()
+        print
+        userguess()
 
 # Number comparison
-def numcomp(number, guess):
+def numcomp(number, guess, guessesleft):
     if guess < number:
-        if guess == number - 1:
-            print "So close! Go HIGHER."
+        if guessesleft > 0:
+            if guess == number - 1:
+                print "So close! Go HIGHER."
+            else:
+                print choice(GoHigher)
         else:
-            print choice(GoHigher)
+            pass
     elif guess > number:
-        if guess == number + 1:
-            print "So close! Go LOWER."
+        if guessesleft > 0:
+            if guess == number + 1:
+                print "So close! Go LOWER."
+            else:
+                print choice(GoLower)
         else:
-            print choice(GoLower)
+            pass
     elif guess == number:
         print "You win! That was exactly the number I was thinking of."
+        print
         exit()
 
 # While loop
@@ -73,9 +81,9 @@ def guessloop(number):
     remainingguess = 5
     while remainingguess > 0:
         guess = userguess()
-        numcomp(number,guess)
         remainingguess -= 1
-        if remainingguess != 1:
+        numcomp(number, guess, remainingguess)
+        if remainingguess > 1:
             print "You have " + str(remainingguess) + " guesses remaining"
         else:
             print "You have " + str(remainingguess) + " guess remaining"
@@ -84,6 +92,7 @@ def guessloop(number):
         print "Sorry... you lost."
         print "The number was: " + str(number)
         print "I'm sure you'll do better next time."
+        print
 
 # Execute
 Number = thenumber()

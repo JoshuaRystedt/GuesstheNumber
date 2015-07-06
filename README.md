@@ -8,8 +8,18 @@ This simple (yet personal and fun) guess the number game is written in Python as
 2. Download GuesstheNumber and save to your Applications directory.
 
 ## To Play
-In Terminal run:
+### OS X and Linux Users:
+In your terminal run:
 
 	python directoryPath/GuesstheNumber.py
 
-Follow the prompts
+Alternatively:
+
+	cd directoryPath
+	python GuesstheNumber.py
+
+### Windows Users:
+In Command Prompt run:
+
+	python directoryPath\GuesstheNumber.py
+	
